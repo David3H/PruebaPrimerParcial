@@ -15,31 +15,36 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let error = false;
 
     if (nombre.trim().length < 3 || /^\s/.test(nombre)) {
       setErrorNombre('El nombre no debe tener espacios en blanco y debe ser al menos 3 caracteres');
+      error = true;
     } else {
       setErrorNombre('');
     }
 
     if (dni.trim().length < 6) {
       setErrorDni('El dni debe tener al menos 6 caracteres');
+      error = true;
     } else {
       setErrorDni('');
     }
 
     if (clave.trim().length < 8) {
       setErrorClave('La contraseña debe tener al menos 8 caracteres');
+      error = true;
     } else {
       setErrorClave('');
     }
-    // Si no hay errores, enviar el formulario
-    if (!errorNombre && !errorDni && !errorClave) {
+    if (!error) {
       setSubmittedData({ nombre, dni, usuario });
       setNombre('');
       setDni('');
       setUsuario('')
       setClave('');
+    }else{
+      return
     }
   };
 
